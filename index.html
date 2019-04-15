@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
+<script type="text/javascript" src="jQuery-3.3.1/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript" src="Bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="Bootstrap-3.3.7/css/bootstrap.min.css"/>
+
+<script>
+
+
+
+$('document').ready(function() {
+
+	var langs = ['ir', 'it', 'en', 'fr'];
+
+	var dictionary = {
+		'greet': {
+			'it': 'Ciao',
+			'en': 'Hello',
+			'fr': 'Salut',
+			'ir': 'درود',
+		},
+		'menu': {
+			'it': 'italy menu',
+			'en': 'english menu',
+			'fr': 'french menu',
+			'ir': 'فهرست',
+		}
+	};
+	
+	$("button").click(function(){
+		
+		var language = $(this).data('language');
+		translate(language);
+		
+	});
+
+	function translate(lang) {
+
+		$("[data-translate]").each(function(){
+			var key = $(this).data('translate');
+			$(this).html(dictionary[key][lang]);
+		});
+
+	}
+
+	// from cookie
+	translate('en');
+	
+});
+</script>
+
+</head>
+
+<body class="container">
+
+<br/>
+
+<button class="btn btn-primary" data-language="en">English</button>
+<button class="btn btn-primary" data-language="ir">Iran</button>
+<button class="btn btn-primary" data-language="fr">French</button>
+<button class="btn btn-primary" data-language="it">Italy</button>
+
+<br/><br/><br/>
+
+<div class="alert alert-info" data-translate="greet"></div>
+<div class="alert alert-info" data-translate="menu"></div>
+
+
+
+
+</body>
+
+</html>
